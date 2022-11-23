@@ -181,6 +181,13 @@ local miscButton2 = misc:CreateButton({
 	end,
 })
 
+local miscButton3 = misc:CreateButton({
+	Name = "Rejoin!",
+	Callback = function()
+        game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer)
+	end,
+})
+
 
 local miscDropdown1 = misc:CreateDropdown({
 	Name = "Change Team",
@@ -196,13 +203,6 @@ local miscDropdown1 = misc:CreateDropdown({
 	elseif team == "Scientific Department" then
 		game:GetService("ReplicatedStorage").Team:FireServer("ScD")
 	end
-	end,
-})
-
-local miscButton3 = misc:CreateButton({
-	Name = "Rejoin!",
-	Callback = function()
-        game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer)
 	end,
 })
 
