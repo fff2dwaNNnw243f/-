@@ -1,0 +1,130 @@
+-- westbound gui by dream0_77777777777
+-- بلاتينيوم اون توب
+getgenv().SecureMode = true
+local plr = game:GetService("Players").LocalPlayer
+local GUI = loadstring(game:HttpGet('https://raw.githubusercontent.com/fff2dwaNNnw243f/SICK-UI/main/SICK%20UI23r4t5e6rtdsdfe'))()
+Lighting = game:GetService("Lighting")
+setclipboard(tostring("https://link-center.net/476105/key3roxyhub"))
+local UI = GUI:CreateWindow({
+	Name = "Roxy Hub",
+	LoadingTitle = "westbound",
+	LoadingSubtitle = "By dream0_77777777777",
+	ConfigurationSaving = {
+		Enabled = true,
+		FolderName = "Roxy Hub", -- Create a custom folder for your hub/game
+		FileName = "Roxy Hub westbound"
+	},
+        Discord = {
+        	Enabled = false,
+        	Invite = "sirius", -- The Discord invite code, do not include discord.gg/
+        	RememberJoins = true -- Set this to false to make them join the discord every time they load it up
+        },
+	KeySystem = true, -- Set this to true to use our key system
+	KeySettings = {
+		Title = "Roxy Hub",
+		Subtitle = "Key System",
+		Note = "https://link-center.net/476105/key3roxyhub",
+		FileName = "RoxyKey",
+		SaveKey = true,
+		GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+		Key = "Red Sun In The Sky"
+	}
+})
+local bypas = UI:CreateTab("bypasses")
+local home = UI:CreateTab("Character")
+local misc = UI:CreateTab("Misc")
+local homeSection = home:CreateSection("Welcome to My Hub "..plr.Name.."!")
+local miscSection = misc:CreateSection("Here You Can Find All the Goody's")
+local bypasSection = bypas:CreateSection("Enjoy!")
+_G.ANTICHET = false
+local bypasButton1 = bypas:CreateButton({
+	Name = "Semi Anti Cheat Bypass (do this first)",
+	Callback = function()
+        if _G.ANTICHEAT == false then
+            print("yes")
+        _G.ANTICHEAT = true
+    else
+        GUI:Notify({
+            Title = "AY",
+            Content = "Don't press that button 2 time's",
+            Actions = {
+                Ignore = {
+                    Name = "Okay!",
+                    Callback = function()
+                        print("Bro why skidding")
+                    end,
+                },
+            },
+        })
+    end
+	end,
+})
+_G.afj = false
+local bypasButton2 = bypas:CreateButton({
+	Name = "anti fall damage",
+	Callback = function()
+        if _G.afj == false then
+            GUI:Notify({
+                Title = "AY",
+                Content = "that will disable the run button are you sure?",
+                Actions = {
+                    button1 = {
+                        Name = "YES!",
+                        Callback = function()
+                            GUI:Notify({
+                                Title = "",
+                                Content = "alr..",
+                            })
+                            plr.Character.CharacterLocal:Destroy()
+                            while plr.CharacterAdded:wait() do
+                                wait(0.4)
+                                plr.Character.CharacterLocal:Destroy()
+                            end
+                        end,
+                    },
+                    button2 = {
+                        Name = "no",
+                        Callback = function()
+                            GUI:Notify({
+                                Title = "",
+                                Content = "alr..",
+                            })
+                        end,
+                    },
+                },
+            })
+
+        _G.afj = true
+        elseif _G.afj == true then
+            GUI:Notify({
+                Title = "AY",
+                Content = "Don't press that button 2 time's",
+                Actions = {
+                    Ignore = {
+                        Name = "Okay!",
+                        Callback = function()
+                            print("Bro why skidding")
+                        end,
+                    },
+                },
+            })
+        end
+	end,
+})
+
+local Slider = home:CreateSlider({
+	Name = "WALKSPEED",
+	Range = {0, 5},
+	Increment = 0.1,
+	CurrentValue = 0.3,
+	Callback = function(sped)
+		tpwalking = false
+        local hb = game.RunService.Heartbeat
+        tpwalking = true
+        while tpwalking and hb:Wait() and plr.Character and plr.Character.Humanoid and plr.Character.Humanoid.Parent do
+            if plr.Character.Humanoid.MoveDirection.Magnitude > 0 then
+                plr.Character:TranslateBy(plr.Character.Humanoid.MoveDirection * tonumber(sped))
+            end
+        end
+	end,
+})
