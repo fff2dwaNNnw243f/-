@@ -174,7 +174,7 @@ local miscButton1 = misc:CreateButton({
 })
 
 local miscButton2 = misc:CreateButton({
-	Name = "Scp096 God mode (BETA)",
+	Name = "Scp096 God mode (IT'S NOT TESTED)",
 	Callback = function()
         plr.Character.Scp096Detection:Destroy()
         plr.Character.HeadMovement:Destroy()
@@ -198,6 +198,14 @@ local miscDropdown1 = misc:CreateDropdown({
 	end
 	end,
 })
+
+local miscButton3 = misc:CreateButton({
+	Name = "Rejoin!",
+	Callback = function()
+        game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer)
+	end,
+})
+
 print("Working")
 print("Working")
 print("Working")
