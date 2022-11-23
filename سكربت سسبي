@@ -1,10 +1,10 @@
 -- Roxy Hub  SCP: Site Roleplay
+-- بلاتينيوم اون توب
 getgenv().SecureMode = true
 local plr = game:GetService("Players").LocalPlayer
 local GUI = loadstring(game:HttpGet('https://raw.githubusercontent.com/fff2dwaNNnw243f/SICK-UI/main/SICK%20UI23r4t5e6rtdsdfe'))()
 Lighting = game:GetService("Lighting")
 setclipboard(tostring("https://link-center.net/476105/key3roxyhub"))
-
 local UI = GUI:CreateWindow({
 	Name = "Roxy Hub",
 	LoadingTitle = "SCP: Site Roleplay",
@@ -34,10 +34,60 @@ local home = UI:CreateTab("Home", 4483362458)
 local misc = UI:CreateTab("Misc")
 local homeSection = home:CreateSection("Welcome to My Hub "..plr.Name.."!")
 local miscSection = misc:CreateSection("Here You Can Find All the Goody's")
+_G.ANTICHET = false
 local homeButton1 = home:CreateButton({
+	Name = "Semi Anti Cheat Bypass (do this first)",
+	Callback = function()
+        if _G.ANTICHEAT == false then
+        GUI:Notify({
+            Title = "AY",
+            Content = "don't use it for WALKSPEED or ANYTHING else",
+            Actions = { 
+                Ignore = {
+                    Name = "Okay!",
+                    Callback = function()
+                    end,
+                },
+            },
+        })
+        local plr = game:GetService("Players").localPlayer
+        for i,v in pairs(game:GetService("Workspace").SCPs:GetDescendants()) do
+            if v:IsA("TouchTransmitter") and v.Name == "TouchInterest" then
+                v:Destroy()
+                print("Destroyed anti cheat")
+            end
+        end
+        for i,v in pairs(plr:GetDescendants()) do
+            if v:IsA("BoolValue") and v.Name == "StopRegen" then
+                v:Destroy()
+                print("Destroyed anti cheat")
+            end
+        end
+        plr.Character.AnimationHandlerClient:Destroy()
+        game:GetService("Workspace").AntiUndermap:Destroy()
+        plr.Character.Model:Destroy()
+        plr.Character.DisabledEmotes:Destroy()
+        _G.ANTICHEAT = true
+    else
+        GUI:Notify({
+            Title = "AY",
+            Content = "Don't press that button 2 time's",
+            Actions = {
+                Ignore = {
+                    Name = "Okay!",
+                    Callback = function()
+                        print("Bro why skidding")
+                    end,
+                },
+            },
+        })
+    end
+	end,
+})
+local homeButton2 = home:CreateButton({
 	Name = "insta respawn",
 	Callback = function()
-        game:GetService("ReplicatedStorage").Died:FireServer(2)
+        plr.Character.Humanoid:Destroy()
 	end,
 })
 local homeKeybind1 = home:CreateKeybind({
@@ -46,16 +96,25 @@ local homeKeybind1 = home:CreateKeybind({
 	HoldToInteract = false,
 	Flag = "irk", 
 	Callback = function(Keybind)
-        game:GetService("ReplicatedStorage").Died:FireServer(2)
+        plr.Character.Humanoid:Destroy()
 	end,
 })
 
-local homeButton2 = home:CreateButton({
-	Name = "Inf Stamina",
+local homeButton3 = home:CreateButton({
+	Name = "Bypass jump cd",
 	Callback = function()
-    plr.Character.Stamina.MaxStamina.Value = 99999999999999999
+        plr.Character.JumpDebounce:Destroy()
 	end,
 })
+
+local homeButton4 = home:CreateButton({
+	Name = "Inf Stamina",
+	Callback = function()
+        plr.Character.Stamina.Stamina.Value = 99999999999999999999999999999999999999999999999
+        plr.Character.Stamina.MaxStamina.Value = 99999999999999999999999999999999999999999999999
+	end,
+})
+
 _G.at = false
 local homeToggle1 = home:CreateToggle({
 	Name = "Auto Run",
@@ -73,22 +132,7 @@ local homeToggle1 = home:CreateToggle({
     end
 	end,
 })
-local miscDropdown1 = misc:CreateDropdown({
-	Name = "Change Team",
-	Options = {"Class - D","Security Department","Mobile Task Force","Scientific Department"},
-	CurrentOption = "Choose Team",
-	Callback = function(team)
-	if team == "Class - D" then
-		game:GetService("ReplicatedStorage").Team:FireServer("CD")
-	elseif team == "Security Department" then
-		game:GetService("ReplicatedStorage").Team:FireServer("SD")
-	elseif team == "Mobile Task Force" then
-		game:GetService("ReplicatedStorage").Team:FireServer("MTF")
-	elseif team == "Scientific Department" then
-		game:GetService("ReplicatedStorage").Team:FireServer("ScD")
-	end
-	end,
-})
+
 
 
 _G.Bright = false
@@ -129,7 +173,31 @@ local miscButton1 = misc:CreateButton({
 	end,
 })
 
+local miscButton2 = misc:CreateButton({
+	Name = "Scp096 God mode (BETA)",
+	Callback = function()
+        plr.Character.Scp096Detection:Destroy()
+        plr.Character.HeadMovement:Destroy()
+	end,
+})
 
+
+local miscDropdown1 = misc:CreateDropdown({
+	Name = "Change Team",
+	Options = {"Class - D","Security Department","Mobile Task Force","Scientific Department"},
+	CurrentOption = "Choose Team",
+	Callback = function(team)
+	if team == "Class - D" then
+		game:GetService("ReplicatedStorage").Team:FireServer("CD")
+	elseif team == "Security Department" then
+		game:GetService("ReplicatedStorage").Team:FireServer("SD")
+	elseif team == "Mobile Task Force" then
+		game:GetService("ReplicatedStorage").Team:FireServer("MTF")
+	elseif team == "Scientific Department" then
+		game:GetService("ReplicatedStorage").Team:FireServer("ScD")
+	end
+	end,
+})
 print("Working")
 print("Working")
 print("Working")
