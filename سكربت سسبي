@@ -1,5 +1,5 @@
 -- Roxy Hub  SCP: Site Roleplay
--- بلاتينيوم اون توب
+-- hmmm what the hell did you crack my shit??
 getgenv().SecureMode = true
 local plr = game:GetService("Players").LocalPlayer
 local GUI = loadstring(game:HttpGet('https://raw.githubusercontent.com/fff2dwaNNnw243f/SICK-UI/main/SICK%20UI23r4t5e6rtdsdfe'))()
@@ -30,64 +30,18 @@ local UI = GUI:CreateWindow({
 		Key = "Red Sun In The Sky"
 	}
 })
-local home = UI:CreateTab("Home", 4483362458)
+local home = UI:CreateTab("Character")
 local misc = UI:CreateTab("Misc")
+local fix = UI:CreateTab("Fix's")
+local credits = UI:CreateTab("Credit's")
 local homeSection = home:CreateSection("Welcome to My Hub "..plr.Name.."!")
 local miscSection = misc:CreateSection("Here You Can Find All the Goody's")
-_G.ANTICHET = false
-local homeButton1 = home:CreateButton({
-	Name = "Semi Anti Cheat Bypass (do this first)",
-	Callback = function()
-        if _G.ANTICHEAT == false then
-        GUI:Notify({
-            Title = "AY",
-            Content = "don't use it for WALKSPEED or ANYTHING else",
-            Actions = { 
-                Ignore = {
-                    Name = "Okay!",
-                    Callback = function()
-                    end,
-                },
-            },
-        })
-        local plr = game:GetService("Players").localPlayer
-        for i,v in pairs(game:GetService("Workspace").SCPs:GetDescendants()) do
-            if v:IsA("TouchTransmitter") and v.Name == "TouchInterest" then
-                v:Destroy()
-                print("Destroyed anti cheat")
-            end
-        end
-        for i,v in pairs(plr:GetDescendants()) do
-            if v:IsA("BoolValue") and v.Name == "StopRegen" then
-                v:Destroy()
-                print("Destroyed anti cheat")
-            end
-        end
-        plr.Character.AnimationHandlerClient:Destroy()
-        game:GetService("Workspace").AntiUndermap:Destroy()
-        plr.Character.Model:Destroy()
-        plr.Character.DisabledEmotes:Destroy()
-        _G.ANTICHEAT = true
-    else
-        GUI:Notify({
-            Title = "AY",
-            Content = "Don't press that button 2 time's",
-            Actions = {
-                Ignore = {
-                    Name = "Okay!",
-                    Callback = function()
-                        print("Bro why skidding")
-                    end,
-                },
-            },
-        })
-    end
-	end,
-})
+local fixSection = fix:CreateSection("all the fix's")
+local CreditsSection = credits:CreateSection("This Script Was Made by dream0_77777777777")
 local homeButton2 = home:CreateButton({
 	Name = "insta respawn",
 	Callback = function()
-        plr.Character.Humanoid:Destroy()
+    game:GetService("ReplicatedStorage").Died:FireServer(2)
 	end,
 })
 local homeKeybind1 = home:CreateKeybind({
@@ -96,22 +50,42 @@ local homeKeybind1 = home:CreateKeybind({
 	HoldToInteract = false,
 	Flag = "irk", 
 	Callback = function(Keybind)
-        plr.Character.Humanoid:Destroy()
+        game:GetService("ReplicatedStorage").Died:FireServer(2)
 	end,
 })
 
-local homeButton3 = home:CreateButton({
-	Name = "Bypass jump cd",
-	Callback = function()
-        plr.Character.JumpDebounce:Destroy()
-	end,
-})
-
+_G.is = false
 local homeButton4 = home:CreateButton({
 	Name = "Inf Stamina",
 	Callback = function()
-        plr.Character.Stamina.Stamina.Value = 99999999999999999999999999999999999999999999999
-        plr.Character.Stamina.MaxStamina.Value = 99999999999999999999999999999999999999999999999
+        if _G.is == false then
+            plr.Character.Stamina.MaxStamina.Value = 99999999999999999999999999999999999999999999999
+            wait(0.5)
+            plr.Character.Stamina.Stamina.Value = 9999999999999999999999999999999999999999999999
+            while wait() do
+                if plr.CharacterAdded:wait() then
+                    wait(0.7)
+                    plr.Character.Stamina.MaxStamina.Value = 99999999999999999999999999999999999999999999999
+                    wait(0.5)
+                    plr.Character.Stamina.Stamina.Value = 9999999999999999999999999999999999999999999999
+                end
+            end
+            _G.is = true
+            wait()
+        else
+            GUI:Notify({
+                Title = "AY",
+                Content = "Don't press that button 2 time's",
+                Actions = { 
+                    Ignore = {
+                        Name = "Okay!",
+                        Callback = function()
+                            print("Bro why skidding")
+                        end,
+                    },
+                },
+            })
+        end
 	end,
 })
 
@@ -125,7 +99,7 @@ local homeToggle1 = home:CreateToggle({
         _G.at = true
         while _G.at == true do
             plr.Character.Run.Running.Value = T
-            wait(0.5)
+            wait(0.7)
         end
     elseif T == false then
         _G.at = false
@@ -133,10 +107,140 @@ local homeToggle1 = home:CreateToggle({
 	end,
 })
 
+_G.bjcd = false
+local homeButton3 = home:CreateButton({
+	Name = "Bypass jump cooldown",
+	Callback = function()
+        if _G.bjcd == false then
+            plr.Character.JumpDebounce:Destroy()
+            while wait() do
+                if plr.CharacterAdded:wait() then
+                    wait(0.6)
+                    plr.Character.JumpDebounce:Destroy()
+                end
+            end
+            _G.bjcd = true
+        else
+            GUI:Notify({
+                Title = "AY",
+                Content = "Don't press that button 2 time's",
+                Actions = { 
+                    Ignore = {
+                        Name = "Okay!",
+                        Callback = function()
+                            print("Bro why skidding")
+                        end,
+                    },
+                },
+            }) 
+        end
+	end,
+})
 
+local homeToggle2 = home:CreateToggle({
+	Name = "Noclip",
+	CurrentValue = false,
+	Flag = "nc", 
+	Callback = function(nc)
+        if nc == true then
+        Clip = false
+        wait()
+        RunService = game:GetService("RunService")
+        local Noclipping = nil
+        Clip = false
+        wait(0.1)
+        local function NoclipLoop()
+            if Clip == false and plr.Character ~= nil then
+                for _, child in pairs(plr.Character:GetDescendants()) do
+                    if child:IsA("BasePart") and child.CanCollide == true and child.Name ~= floatName then
+                        child.CanCollide = false
+                    end
+                end
+            end
+        end
+        Noclipping = RunService.Stepped:Connect(NoclipLoop)
+    else
+        Clip = true
+    end
+	end,
+})
+
+local homeSlider1 = home:CreateSlider({
+	Name = "walkspeed",
+	Range = {0, 2},
+	Increment = 0.1,
+	CurrentValue = 0,
+	Callback = function(sped)
+        if sped > 0.6 then
+            GUI:Notify({
+                Title = "AY",
+                Content = "I don't recommend to do above 0.5",
+                duration = 2,
+            })
+            _G.tpwalking = false
+            wait()
+            _G.tpwalking = true
+            while _G.tpwalking == true do
+                wait()
+                if plr.Character.Humanoid.MoveDirection.Magnitude > 0 then
+                    plr.Character:TranslateBy(plr.Character.Humanoid.MoveDirection * tonumber(sped))
+                end
+            end
+        else
+            _G.tpwalking = false
+            wait()
+            _G.tpwalking = true
+            while _G.tpwalking == true do
+                wait()
+                if plr.Character.Humanoid.MoveDirection.Magnitude > 0 then
+                    plr.Character:TranslateBy(plr.Character.Humanoid.MoveDirection * tonumber(sped))
+                end
+            end
+        end
+        _G.tpwalking = false
+        wait()
+        _G.tpwalking = true
+        while _G.tpwalking == true do
+            wait()
+            if plr.Character.Humanoid.MoveDirection.Magnitude > 0 then
+                plr.Character:TranslateBy(plr.Character.Humanoid.MoveDirection * tonumber(sped))
+            end
+        end
+	end,
+})
+_G.RT = false
+local homeButton1 = misc:CreateButton({
+	Name = "Remove tag/username (not fe)",
+	Callback = function()
+        if _G.RT == false then
+            plr.Character.Head.Overhead:Destroy()
+            wait()
+            while wait() do
+                if plr.CharacterAdded:wait() then
+                    wait(.6)
+                    plr.Character.Head.Overhead:Destroy()
+                end
+            end
+            _G.RT = true
+        else
+            GUI:Notify({
+                Title = "AY",
+                Content = "Don't press that button 2 time's",
+                Actions = { 
+                    Ignore = {
+                        Name = "Okay!",
+                        Callback = function()
+                            print("Bro why skidding")
+                        end,
+                    },
+                },
+            })
+    end
+	end,
+})
 
 _G.Bright = false
-local miscButton1 = misc:CreateButton({
+local miscButton2 = misc:CreateButton({
 	Name = "full brightness",
 	Callback = function()
         if _G.Bright == false then
@@ -160,7 +264,7 @@ local miscButton1 = misc:CreateButton({
             GUI:Notify({
                 Title = "AY",
                 Content = "Don't press that button 2 time's",
-                Actions = { -- Notification Buttons
+                Actions = { 
                     Ignore = {
                         Name = "Okay!",
                         Callback = function()
@@ -173,18 +277,78 @@ local miscButton1 = misc:CreateButton({
 	end,
 })
 
+_G.nf = false
 local miscButton2 = misc:CreateButton({
-	Name = "Scp096 God mode (IT'S NOT TESTED)",
+	Name = "no fog",
 	Callback = function()
-        plr.Character.Scp096Detection:Destroy()
-        plr.Character.HeadMovement:Destroy()
+        if _G.nf == false then
+            Lighting.FogEnd = 100000
+            for i,v in pairs(Lighting:GetDescendants()) do
+                if v:IsA("Atmosphere") then
+                    v:Destroy()
+                end
+            end
+        _G.nf = true
+        while wait() do
+            if plr.CharacterAdded:wait() then
+                Lighting.FogEnd = 100000
+                for i,v in pairs(Lighting:GetDescendants()) do
+                    if v:IsA("Atmosphere") then
+                        v:Destroy()
+                    end
+                end
+            wait(5)
+            end
+        end
+        elseif _G.nf == true then
+            GUI:Notify({
+                Title = "AY",
+                Content = "Don't press that button 2 time's",
+                Actions = { 
+                    Ignore = {
+                        Name = "Okay!",
+                        Callback = function()
+                            print("Bro why skidding")
+                        end,
+                    },
+                },
+            })
+        end
 	end,
 })
 
+_G.sgm = false
 local miscButton3 = misc:CreateButton({
+	Name = "Scp096 God mode (IT'S NOT TESTED)",
+	Callback = function()
+        if _G.sgm == false then
+            if plr.CharacterAdded:wait() then
+                wait(.7)
+                plr.Character.Scp096Detection:Destroy()
+                plr.Character.HeadMovement:Destroy()  
+            end
+            _G.sgm = true
+        else
+            GUI:Notify({
+                Title = "AY",
+                Content = "Don't press that button 2 time's",
+                Actions = { 
+                    Ignore = {
+                        Name = "Okay!",
+                        Callback = function()
+                            print("Bro why skidding")
+                        end,
+                    },
+                },
+            })
+        end
+	end,
+})
+
+local miscButton4 = misc:CreateButton({
 	Name = "Rejoin!",
 	Callback = function()
-        game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer)
+         game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer)
 	end,
 })
 
@@ -206,9 +370,52 @@ local miscDropdown1 = misc:CreateDropdown({
 	end,
 })
 
+local fixButton1 = fix:CreateButton({
+	Name = "Blur and red effect (fix)",
+	Callback = function()
+        plr.Character.Scp096Detection:Destroy()
+        game:GetService("Workspace").Camera.BlurAfterDie.Size = 0
+        wait()
+        game:GetService("Workspace").Camera.ColorCorrectionAfterDie:Destroy()
+	end,
+})
+
+local fixButton2 = fix:CreateButton({
+	Name = "walkspeed fix",
+	Callback = function()
+        _G.tpwalking = false
+	end,
+})
+
+local CreditsButton1 = credits:CreateButton({
+	Name = "discord : kool_ere#0089",
+	Callback = function()
+		setclipboard(tostring("kool_ere#0089"))
+        GUI:Notify({
+            Title = "Copyed!",
+            Content = "Copyed Discord Username!",
+            Duration = 2,
+        })
+	end,
+})
+
+local CreditsButton2 = credits:CreateButton({
+	Name = "Roblox : dream0_77777777777",
+	Callback = function()
+		setclipboard(tostring("dream0_77777777777"))
+        GUI:Notify({
+            Title = "Copyed!",
+            Content = "Copyed Roblox Username!",
+            Duration = 2,
+        })
+	end,
+})
+
 print("Working")
 print("Working")
 print("Working")
 print("Working")
 print("Working")
 print("Working")
+wait(5)
+GUI:LoadConfiguration()
