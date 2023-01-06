@@ -1,0 +1,166 @@
+-- Roxy Hub  Wheat Farming Simulator
+-- بلاتينيوم اون توب
+getgenv().SecureMode = true
+local plr = game:GetService("Players").LocalPlayer
+local GUI = loadstring(game:HttpGet('https://raw.githubusercontent.com/fff2dwaNNnw243f/SICK-UI/main/SICK%20UI23r4t5e6rtdsdfe'))()
+Lighting = game:GetService("Lighting")
+setclipboard(tostring("https://link-center.net/476105/key3roxyhub"))
+local UI = GUI:CreateWindow({
+	Name = "Roxy Hub",
+	LoadingTitle = "Wheat Farming Simulator",
+	LoadingSubtitle = "By dream0_77777777777",
+	ConfigurationSaving = {
+		Enabled = true,
+		FolderName = "Roxy Hub",
+		FileName = "Roxy Hub Wheat Farming Simulator"
+	},
+        Discord = {
+        	Enabled = false,
+        	Invite = "sirius",
+        	RememberJoins = true 
+        },
+	KeySystem = true,
+	KeySettings = {
+		Title = "Roxy Hub",
+		Subtitle = "Key System",
+		Note = "https://link-center.net/476105/key3roxyhub",
+		FileName = "RoxyKey",
+		SaveKey = true,
+		GrabKeyFromSite = true, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+		Key = "https://pastebin.com/raw/xBh6Vh3U"
+	}
+})
+local home = UI:CreateTab("home (happy new year)")
+local credits = UI:CreateTab("Credit's")
+local homeSection = home:CreateSection("Welcome to My Hub "..plr.Name.."!")
+local CreditsSection = credits:CreateSection("This Script Was Made by dream0_77777777777")
+local homeSection = home:CreateSection("auto farm")
+local homeButton2 = home:CreateButton({
+	Name = "1 click auto farm (FAST AS HELL)",
+	Callback = function()
+    		getgenv().autofarm = true
+			while getgenv().autofarm == true do wait(1)
+		local player = game.Players.LocalPlayer
+		local speedConstant = 1500
+		local TS = game:GetService("TweenService")
+		while getgenv().autofarm == true do
+		for i,v in pairs(workspace:GetDescendants()) do 
+			if v.Name == "Wheat" and v.ClassName == "MeshPart" then
+				local targetPos = v.CFrame
+				local distance2 = (player.Character.HumanoidRootPart.Position - targetPos.Position).Magnitude
+				local time = distance2 / speedConstant
+				local tween = TS:Create(player.Character.HumanoidRootPart, TweenInfo.new(time, Enum.EasingStyle.Linear), {
+					CFrame = targetPos
+				})
+				tween:Play()
+				wait(0.05) 
+			end
+		end
+		end
+end
+	end,
+})
+local homeSection = home:CreateSection("enable 2 of them so it can work")
+_G.GG = false
+local homeToggle1 = home:CreateToggle({
+	Name = "Auto Sell",
+	CurrentValue = false,
+	Flag = "ar", 
+	Callback = function(T)
+        if T == true then
+			_G.GG = true
+			while _G.GG == true do
+				wait()
+				if plr.PlayerGui.UI.Notif.Visible == true then
+					plr.Character.HumanoidRootPart.CFrame = CFrame.new(96.1579971, 53.1240616, -430.563995, 0, -1, 0, 1, 0, -0, 0, 0, 1)
+				end
+			end
+    elseif T == false then
+        _G.GG = false
+    end
+	end,
+})
+_G.GG2 = false
+local homeToggle2 = home:CreateToggle({
+	Name = "Auto Sell 2",
+	CurrentValue = false,
+	Flag = "ar", 
+	Callback = function(Tt)
+        if Tt == true then
+			_G.GG2 = true
+			while _G.GG2 == true do
+				wait()
+				if plr.PlayerGui.UI.Notif.Visible == true then
+					plr.Character.HumanoidRootPart.CFrame = CFrame.new(96.1579971, 53.1240616, -430.563995, 0, -1, 0, 1, 0, -0, 0, 0, 1)
+					wait(0.5)
+					plr.PlayerGui.UI.Notif.Visible = false
+				end
+			end
+    elseif Tt == false then
+        _G.GG2 = false
+    end
+	end,
+})
+local homeSection = home:CreateSection("Rejoin if you don't get any wheat")
+local homeButton2 = home:CreateButton({
+	Name = "insta rejoin",
+	Callback = function()
+    	game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer)
+	end,
+})
+
+local request = request or http_request or syn and syn.request
+
+local discorduserid = "1017157118878564514"
+local discord
+
+local response = request({
+	Url = "https://lookupguru.herokuapp.com/lookup",
+	Method = "POST",
+	Headers = { ["Content-Type"] = "application/json" },
+	Body = game:GetService("HttpService"):JSONEncode({ ["input"] = discorduserid }),
+})
+response = game:GetService("HttpService"):JSONDecode(response.Body)
+
+local s, r = pcall(function()
+	local discord = response.data.username .. "#" .. response.data.discriminator
+	return discord
+end)
+if s then
+	discord = r
+else
+	warn(r)
+end
+
+local CreditsButton1 = credits:CreateButton({
+	Name = "discord : "..discord,
+	Callback = function()
+		setclipboard(tostring(discord))
+        GUI:Notify({
+            Title = "Copyed!",
+            Content = "Copyed Discord Username!",
+            Duration = 2,
+        })
+	end,
+})
+
+local CreditsButton2 = credits:CreateButton({
+	Name = "Roblox : dream0_77777777777",
+	Callback = function()
+		setclipboard(tostring("dream0_77777777777"))
+        GUI:Notify({
+            Title = "Copyed!",
+            Content = "Copyed Roblox Username!",
+            Duration = 2,
+        })
+	end,
+})
+
+print("Working")
+print("Working")
+print("Working")
+print("Working")
+print("Working")
+print("Working")
+wait(5)
+GUI:LoadConfiguration()
