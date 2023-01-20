@@ -1,1 +1,2 @@
-game.Players.LocalPlayer:Kick("معليش اني طردتك بس جيب السكربت الجديد بل مطقع نفسه")
+setclipboard(tostring("https://pastebin.com/bHTD6i0D"))
+game.Players.LocalPlayer:Kick("معليش اني طردتك بس تم نسخ السكربت")
